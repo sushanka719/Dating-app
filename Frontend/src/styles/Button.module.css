@@ -1,0 +1,24 @@
+/* Button.module.css */
+.btn {
+  background-color: var(--button-bg); /* Bumble Yellow */
+  color: var(--secondary-color); /* Black text */
+  border: none;
+  padding: 12px 24px; /* Add padding to make the button larger */
+  border-radius: var(--border-radius); /* Rounded corners */
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern typography */
+  font-weight: bold; /* Bold text for emphasis */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--transition-speed), transform var(--transition-speed); /* Smooth transitions */
+}
+
+.btn:hover {
+  background-color: var(--button-hover); /* Darker yellow on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover for interactive feel */
+}
+
+.btn:disabled {
+  background-color: #E0E0E0; /* Light gray when disabled */
+  color: #BDBDBD; /* Gray text */
+  cursor: not-allowed; /* Disable cursor on hover when button is disabled */
+}

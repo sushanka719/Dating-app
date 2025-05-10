@@ -1,0 +1,336 @@
+.container {
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: var(--white-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.heading {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border var(--transition-speed);
+}
+
+.input:focus {
+    border-color: var(--primary-color);
+}
+
+.button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--button-bg);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+}
+
+/* birthdate */
+.dropdownContainer {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dropdown {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border var(--transition-speed);
+    background-color: var(--white-color);
+}
+
+.dropdown:focus {
+    border-color: var(--primary-color);
+}
+
+.noticeText {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* add gender */
+.stepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    background-color: var(--background-color);
+    padding: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+.optionBox {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--white-color);
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.optionBox:hover {
+    background-color: #f9f9f9;
+}
+
+.selected {
+    border-color: var(--primary-color);
+    background-color: #fff5b3;
+}
+
+.radioInput {
+    margin-right: 1rem;
+    accent-color: var(--primary-color);
+    /* nice yellow check mark */
+}
+
+.optionText {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.continueButton {
+    background-color: var(--button-bg);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.continueButton:hover {
+    background-color: var(--button-hover);
+}
+
+.logoutButton {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.description {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1rem;
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.photoGrid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.photoBox {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white-color);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.photoBox:hover {
+    background-color: #fff4b3;
+    border-color: var(--button-hover);
+}
+
+.plusIcon {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.noteText {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* 🔥 NEW STYLE FOR IMAGE PREVIEW */
+.photoPreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+/* location access */
+
+.locationImage {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+/* dating mode */.stepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.modeOptions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.modeOption {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    width: 100%;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.modeOption:hover {
+    border-color: var(--primary-color);
+}
+
+.selected {
+    border-color: var(--primary-color);
+    background-color: #fffbe3;
+}
+
+.tickCircle {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-size: 14px;
+    margin-top: 0.3rem;
+}
+
+.optionTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.optionText {
+    font-size: 0.9rem;
+    margin-top: 4px;
+    color: #555;
+}
+
+.continueButton {
+    background-color: var(--button-bg);
+    color: var(--secondary-color);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.continueButton:hover:not(:disabled) {
+    background-color: var(--button-hover);
+}
+
+.continueButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

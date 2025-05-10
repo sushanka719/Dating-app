@@ -1,0 +1,77 @@
+/* Navbar.module.css */
+
+.navbar {
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+color: rgb(104, 100, 100);
+gap: 1rem;
+align-items: center;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+/* Show hamburger menu only on smaller screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.link {
+  color: rgb(104, 100, 100);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.navLogo{
+    height: 2rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .show {
+    display: flex;
+  }
+}

@@ -1,0 +1,189 @@
+.bumbleContainer {
+    display: grid;
+    place-content: center;
+    position: relative;
+    margin: 1.5rem;
+}
+.item{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    /* overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none; */
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+.profileHeader {
+    display: flex;
+}
+
+.userImage {
+    width: 50%;
+}
+
+.userImage img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.nameSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff7d8;
+    width: 50%;
+}
+
+.nameSection h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.nameSection p {
+    margin: 5px 0 15px 0;
+    font-size: 16px;
+}
+
+.blockButton {
+    background: none;
+    border: none;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.section {
+    padding: 20px;
+}
+.p_20{
+    padding: 20px;
+}
+
+.section h3 {
+    color: #222;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.detailItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.detailLabel {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.detailValue {
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.bioText {
+    color: #444;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+/* Action Buttons Container */
+.actionButtonsContainer {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 10;
+}
+
+.dislikeButton,
+.superLikeButton,
+.likeButton {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dislikeButton {
+    background-color: white;
+    color: #ff4757;
+}
+
+.superLikeButton {
+    background-color: white;
+    color: #1e90ff;
+}
+
+.likeButton {
+    background-color: white;
+    color: #ff6b81;
+}
+
+.dislikeButton:hover,
+.superLikeButton:hover,
+.likeButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dislikeButton:active,
+.superLikeButton:active,
+.likeButton:active {
+    transform: scale(0.95);
+}
+
+/* Ensure the card has enough padding at bottom */
+/* .card {
+    padding-bottom: 40px;
+} */
+
+.splide__pagination{
+    display: inline-flex !important;
+    padding: 0;
+    border: 1px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.about_details{}
+
+.splide__pagination .splide__pagination__page{
+    margin: 0 !important;
+    height: 10px !important;
+    width: 3px !important;
+    transform: scale(1) !important;
+    background-color: #fff !important;
+}
+.splide__pagination .splide__pagination__page.is-active{
+    background-color: #fff7d8;
+}

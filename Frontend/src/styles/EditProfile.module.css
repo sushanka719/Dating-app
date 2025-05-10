@@ -1,0 +1,205 @@
+/* styles.module.css */
+.container {
+    margin: 0 auto;
+    width: 40%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-size: 14px;
+}
+
+.inputInterest {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.cancelButton {
+    padding: 8px 16px;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+    background-color: #e5e7eb;
+}
+
+.saveButton {
+    padding: 8px 16px;
+    background-color: #ffcc80;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+    background-color: #ffb74d;
+}
+
+/* New Interest Input Styles */
+.interestsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    /* For absolute positioning of suggestions */
+}
+
+.inputGroup {
+    display: flex;
+    gap: 8px;
+    position: relative;
+}
+
+/* Suggestions Dropdown */
+.suggestionsContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    margin-top: -1px;
+    /* Align with input border */
+}
+
+.suggestionItem {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #eee; 
+}
+
+.suggestionItem:last-child {
+    border-bottom: none;
+}
+
+.suggestionItem:hover {
+    background-color: #f5f5f5;
+}
+
+/* Selected Interests Chips */
+.interestsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    height: auto;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.chip:hover {
+    background-color: #e5e7eb;
+}
+
+.removeButton {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.removeButton:hover {
+    color: #ff5252;
+}
+
+/* Footer Styles */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.kissIcon {
+    height: 50px;
+    margin: 0 auto;
+}
+
+.appName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.creator {
+    font-size: 14px;
+    color: #666;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    padding: 6px 14px;
+    margin-bottom: 10px;
+}
+
+.inputLeft {
+    flex: 1;
+    margin-right: 15px;
+    padding: 8px;
+    border-radius: 1.5rem;
+    border: 1px solid #aaa;
+    border: none;
+}
+
+.dataRight {
+    min-width: 120px;
+    text-align: right;
+    color: #555;
+    font-size: 0.95rem;
+}
+

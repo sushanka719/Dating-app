@@ -1,0 +1,149 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #6c6c6c;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter img {
+    width: 20px;
+    height: 20px;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #f7b32b;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.logo img {
+    width: 26px;
+    height: 26px;
+}
+
+/* ---- Filter Modal Styles ---- */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal h4 {
+    margin: 12px 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.optionBtn {
+    flex: 1;
+    padding: 8px;
+    margin: 0 4px;
+    border: none;
+    background-color: #eee;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.optionBtn.active {
+    background-color: #f7b32b;
+    color: white;
+    font-weight: bold;
+}
+
+.ageSlider {
+    margin: 1rem 0;
+}
+
+.ageSlider p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.ageSlider input[type='range'] {
+    width: 100%;
+    appearance: none;
+    height: 4px;
+    background: #ddd;
+    border-radius: 4px;
+    outline: none;
+    margin: 15px 0;
+}
+
+.ageSlider input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #f7b32b;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.cancel {
+    background: transparent;
+    border: none;
+    color: #777;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.apply {
+    background-color: #f7b32b;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}

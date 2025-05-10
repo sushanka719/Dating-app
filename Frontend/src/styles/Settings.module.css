@@ -1,0 +1,172 @@
+.container {
+    margin: 0 auto;
+    width: 40%;
+    padding: 20px;
+}
+
+.connectionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+}
+
+.snoozeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snoozeText {
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.snoozeOn {
+    background-color: #ffcc80;
+    color: #333;
+}
+
+.snoozeOff {
+    background-color: #f3f4f6;
+    color: #666;
+}
+
+
+.actionButtons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.logoutButton {
+    background-color: #FFDA00;
+    color: #333;
+    font-weight: 600;
+}
+
+.deleteButton {
+    background-color: #ffe0e0;
+    color: black;
+    font-weight: 600;
+}
+
+.logoutButton:hover{
+    background-color: #E5C100;
+}
+
+.kissIcon {
+    height: 20px;
+    margin: 0 auto;
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.kissIcon {
+    height: 50px;
+    margin: 0 auto;
+}
+
+.appName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.creator {
+    font-size: 14px;
+    color: #666;
+}
+
+/* filter */
+/* Filters Container */
+.filtersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px 0;
+}
+
+/* Filter Label */
+.filterLabel {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Pill Buttons */
+.pillButtonGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pillButton {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    background-color: #f3f4f6;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pillButton:hover {
+    background-color: #e5e7eb;
+}
+
+.pillButtonActive {
+    background-color: #ffb74d;
+    border-color: #ffb74d;
+    color: #fff;
+}
+
+/* Range Slider */
+.rangeSlider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffb74d;
+    cursor: pointer;
+}
+
+.ageRangeText {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}

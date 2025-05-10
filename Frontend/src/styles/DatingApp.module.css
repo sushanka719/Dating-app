@@ -1,0 +1,11 @@
+
+.right_container{
+    width: 100%;
+    /* padding: 1.5rem; */
+    --size: calc(100% - 400px);
+    max-width: var(--size);
+    flex:  0 0 var(--size);
+    float: right;
+    height: 100vh;
+    position: relative;
+}

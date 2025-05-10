@@ -1,0 +1,21 @@
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+:root {
+  --primary-color: #FFDA00; /* Bumble Yellow */
+  --secondary-color: #000000; /* Black */
+  --white-color: #FFFFFF; /* White */
+  --text-color: #1A1A1A; /* Dark Gray for readability */
+  --button-bg: #FFDA00; /* Button background */
+  --button-hover: #E5C100; /* Darker shade of yellow for hover effect */
+  --border-radius: 12px; /* Rounded corners for a smooth UI */
+  --transition-speed: 0.3s; /* Smooth animations */
+  --background-color:#fff7d8;
+}

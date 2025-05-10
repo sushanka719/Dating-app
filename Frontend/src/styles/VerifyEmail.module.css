@@ -1,0 +1,53 @@
+
+.verifyEmailContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary-color); 
+  color: var(--secondary-color); 
+  padding: 0 20px; 
+}
+
+.messageBox {
+  background: var(--white-color);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.headerText {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+.infoText {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+.btncontainer{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 500px) {
+  .messageBox {
+    padding: 30px;
+  }
+
+  .headerText {
+    font-size: 1.6rem;
+  }
+
+  .infoText {
+    font-size: 1rem;
+    margin-bottom: 20px; 
+  }
+}

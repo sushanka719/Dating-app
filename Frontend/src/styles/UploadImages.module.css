@@ -1,0 +1,155 @@
+.container {
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f5f5f5;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.imageWrapper:hover {
+    transform: scale(1.02);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.addImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #ccc;
+    height: 100%;
+    width: 100%;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    transition: background 0.3s;
+}
+
+.addImage:hover {
+    background-color: #f0f0f0;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.uploadModal,
+.deleteModal {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 16px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.uploadModal h2,
+.deleteModal h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.uploadModal p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.fileInput {
+    display: block;
+    margin: 0 auto;
+}
+
+.previewModal {
+    background: white;
+    border-radius: 12px;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+}
+
+.previewImage {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.deleteButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.uploadAnotherBtn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.uploadAnotherBtn:hover {
+    background: #0056b3;
+}
+
+.deleteBtn {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background: #d9363e;
+}

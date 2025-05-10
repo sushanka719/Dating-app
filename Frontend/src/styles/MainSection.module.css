@@ -1,0 +1,93 @@
+/* MainSection.module.css */
+
+.mainSection {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height */
+  background-image: url('../assets/mainimg.jpg'); /* Replace with your own background image URL */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay to enhance readability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  color: var(--white-color);
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  max-width: 600px; /* Limit text width */
+}
+
+.mainText {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.signupBtn {
+  background-color: var(--button-bg); /* Bumble Yellow */
+  color: var(--secondary-color); /* Black text */
+  border-radius: var(--border-radius);
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.signupBtn:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainText {
+    font-size: 2.5rem;
+  }
+
+  .quote {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .signupBtn {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainText {
+    font-size: 2rem;
+  }
+
+  .quote {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .signupBtn {
+    padding: 8px 16px;
+  }
+}

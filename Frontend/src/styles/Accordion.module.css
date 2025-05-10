@@ -1,0 +1,69 @@
+.accordion {
+    /* width: 40%; */
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    /* light pop effect */
+}
+
+.accordionHeader {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accordionHeader:hover {
+    background-color: #f9f9f9;
+    /* light hover effect */
+}
+
+.open {
+    background-color: #f9f9f9;
+}
+
+.title {
+    font-size: 18px;
+    /* Bigger text */
+    font-weight: 700;
+    /* Bold */
+    color: #222;
+    /* Darker text */
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+/* Animation hack for smooth height transition */
+.contentWrapper {
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 20px;
+}
+
+.openContent {
+    max-height: 1000px;
+    /* enough for most content */
+    opacity: 1;
+    padding: 20px;
+}
+
+.content {
+    margin-top: 10px;
+}
