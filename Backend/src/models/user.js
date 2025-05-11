@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true, minlength: 6 },
         age: { type: Number, min: 18 }, 
         interestedIn: { type: String, enum: ["male", "female", "everyone"]},
-        lookingfor: { type: String, enum: ["Date", "Bff"]},
+        lookingfor: { type: String, enum: ["date", "bff"]},
         bio: { type: String, maxlength: 250 }, 
         profilePics: [{ type: String }], 
         location: {

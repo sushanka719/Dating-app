@@ -24,6 +24,9 @@ const Settings = () => {
 
   // Local state for immediate UI response
   const [localAge, setLocalAge] = useState(reduxAgeRange[1]);
+  console.log('Redux age range:', reduxAgeRange[1]);
+  console.log('Local age:', localAge);
+
 
   // Sync local state when Redux state changes
   useEffect(() => {
@@ -119,10 +122,10 @@ const Settings = () => {
             <div>
               <label className={styles.filterLabel}>I'm interested in:</label>
               <div className={styles.pillButtonGroup}>
-                {['women', 'men', 'everyone'].map((option) => (
+                {['Female', 'Male', 'Everyone'].map((option) => (
                   <button
                     key={option}
-                    className={`${styles.pillButton} ${interestedIn === option
+                    className={`${styles.pillButton} ${interestedIn.toLowerCase() === option.toLowerCase()
                         ? styles.pillButtonActive
                         : ''
                       }`}

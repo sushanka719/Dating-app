@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/DatingAppHeader.module.css';
 import filter from '../assets/filter.png';
 import kiss from '../assets/kiss.png';
+import {
+    setInterestedIn,
+    setAgeRange,
+    updateSettings,
+    fetchSettings,
+} from '../store/reducers/SettingSlics';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DatingAppHeader = () => {
+    const dispatch = useDispatch();
     const [showFilter, setShowFilter] = useState(false);
-    const [interestedIn, setInterestedIn] = useState('Everyone');
-    const [ageRange, setAgeRange] = useState([18, 30]);
+
+    const { interestedIn, ageRange} = useSelector(
+        (state) => state.settings
+      );
+
+    useEffect(() => {
+        dispatch(fetchSettings()); 
+    }, [dispatch]);
 
     const handleApply = () => {
-        console.log('Filters:', { interestedIn, ageRange });
+        dispatch(updateSettings({
+            interestedIn,
+            preferences: {
+                minAge: 18,
+                maxAge: ageRange[1]
+            }
+          }));
         setShowFilter(false);
     };
 
@@ -34,11 +54,11 @@ const DatingAppHeader = () => {
                     <div className={styles.modal}>
                         <h4>I’m interested in…</h4>
                         <div className={styles.options}>
-                            {['Women', 'Men', 'Everyone'].map((option) => (
+                            {['Male', 'Female', 'Everyone'].map((option) => (
                                 <button
                                     key={option}
-                                    className={`${styles.optionBtn} ${interestedIn === option ? styles.active : ''}`}
-                                    onClick={() => setInterestedIn(option)}
+                                    className={`${styles.optionBtn} ${interestedIn.toLowerCase() === option.toLowerCase() ? styles.active : ''}`}
+                                    onClick={() => dispatch(setInterestedIn(option))}
                                 >
                                     {option}
                                 </button>
@@ -47,20 +67,13 @@ const DatingAppHeader = () => {
 
                         <h4>Age</h4>
                         <div className={styles.ageSlider}>
-                            <p>Between {ageRange[0]} and {ageRange[1]}</p>
-                            <input
-                                type="range"
-                                min="18"
-                                max="60"
-                                value={ageRange[0]}
-                                onChange={(e) => setAgeRange([+e.target.value, ageRange[1]])}
-                            />
+                            <p>Between 18 and {ageRange[1]}</p>
                             <input
                                 type="range"
                                 min="18"
                                 max="60"
                                 value={ageRange[1]}
-                                onChange={(e) => setAgeRange([ageRange[0], +e.target.value])}
+                                onChange={(e) => dispatch(setAgeRange([ageRange[0], +e.target.value]))}
                             />
                         </div>
 

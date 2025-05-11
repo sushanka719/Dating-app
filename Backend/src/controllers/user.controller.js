@@ -291,11 +291,11 @@ export const updateUserSettings = async (req, res) => {
         }
 
         if (interestedIn) {
-            updateData.interestedIn = interestedIn.toLowerCase();
+            updateData.interestedIn = interestedIn;
         }
 
         if (lookingfor) {
-            updateData.lookingfor = lookingfor.toLowerCase();
+            updateData.lookingfor = lookingfor;
         }
 
         if (preferences && typeof preferences === 'object') {
