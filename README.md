@@ -13,8 +13,8 @@ EMAIL_PASS=gsgsg
 # const transporter = nodemailer.createTransport({
 #     service: 'gmail', 
 #     auth: {
-#         user: 'undeniable719@gmail.com', 
-#         pass: 'fvmttzobslfsfkwl',   
+#         user: 'egxample@gmail.com', 
+#         pass: 'fvmttzogfdgsgsl',   
 #     },
 # });
 
