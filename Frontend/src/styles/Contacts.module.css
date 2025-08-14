@@ -1,0 +1,64 @@
+.contentWrapper {
+    width: 500px;
+    /* Fixed width */
+    margin: 20px auto;
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.section h2 {
+    font-size: 1.3rem;
+    /* Increased */
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.section p {
+    font-size: 1rem;
+    /* Increased */
+    color: #555;
+}
+
+.section ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.95rem;
+    /* Increased */
+    margin-top: 6px;
+}
+
+.section ul li {
+    margin: 6px 0;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 18px 0;
+}
+
+.faqItem {
+    margin-bottom: 14px;
+}
+
+.faqItem h3 {
+    font-size: 1.1rem;
+    /* Increased */
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.faqItem p {
+    font-size: 0.95rem;
+    /* Increased */
+    color: #666;
+}
+
+.faqDivider {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 14px 0;
+}

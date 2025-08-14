@@ -8,7 +8,6 @@ import { useOutletContext } from 'react-router-dom'
 import { interests } from '../utils/interests.js'
 import { useDispatch } from 'react-redux'
 import { submitUserData } from '../store/reducers/updateProfile.js'
-import { FaRoad } from 'react-icons/fa'
 
 const EditProfile = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
@@ -50,6 +49,7 @@ const EditProfile = () => {
     }
   }, [inputValue, selectedInterests]);
 
+  // Fetch user data once on mount
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -57,7 +57,6 @@ const EditProfile = () => {
           credentials: 'include'
         });
         const data = await res.json();
-        // console.log(data)
 
         setFormData({
           job: data.user.job || '',
@@ -65,22 +64,20 @@ const EditProfile = () => {
           height: data.user.height || '',
           drinking: data.user.drinking || '',
           smoking: data.user.smoking || '',
-          kids: data.user.kids || '',  
+          kids: data.user.kids || '',
           politics: data.user.politics || '',
           religion: data.user.religion || '',
           location: data.user.currentlyLiving || '',
           bio: data.user.bio || '',
         });
 
-        // console.log(FormData)
-
         setSelectedInterests(data.user.interests || []);
 
-        // Set image previews
+        // Set image previews with full URLs
         const previewUrls = data.user.profilePics?.map(pic => `http://localhost:5000${pic}`) || Array(6).fill(null);
         setFiles({
           previewUrls,
-          fileObjects: Array(6).fill(null), // initially empty, user will reupload
+          fileObjects: Array(6).fill(null),
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -90,8 +87,7 @@ const EditProfile = () => {
     fetchUserData();
   }, []);
 
-
-  // Handle file updates from UploadImages component
+  // Update files state when UploadImages component calls back
   const handleFilesUpdate = (updatedPreviewUrls, updatedFileObjects) => {
     setFiles({
       previewUrls: updatedPreviewUrls,
@@ -118,12 +114,13 @@ const EditProfile = () => {
       [name]: value
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
 
-    // Add regular form data
+    // Append normal form data if non-empty
     Object.entries(formData).forEach(([key, value]) => {
       const stringValue = String(value);
       if (stringValue.trim() !== "") {
@@ -131,45 +128,41 @@ const EditProfile = () => {
       }
     });
 
-    // Add interests
+    // Append interests (can be multiple)
     selectedInterests.forEach(interest => {
       formDataToSend.append('interests', interest);
     });
 
-    // Handle files - need to track:
-    // 1. Existing images that should be kept
-    // 2. New uploads
-    // 3. Deleted images (null values)
+    // Append files:
+    // - New uploads as files
+    // - Existing images as paths (without base URL)
     files.previewUrls.forEach((url, index) => {
       const file = files.fileObjects[index];
-
       if (file) {
-        // New upload - append the file
         formDataToSend.append('profilePics', file);
       } else if (url) {
-        // Existing image - send the path to keep it
-        // Remove the base URL since backend already knows it
         const imagePath = url.replace('http://localhost:5000', '');
         formDataToSend.append('existingProfilePics', imagePath);
       }
-      // Null values represent deleted images - don't send anything
+      // Null means deleted image — do not append anything
     });
 
-    // For debugging
-    // const formDataObject = {};
-    // for (let [key, value] of formDataToSend.entries()) {
-    //   if (formDataObject[key]) {
-    //     if (Array.isArray(formDataObject[key])) {
-    //       formDataObject[key].push(value);
-    //     } else {
-    //       formDataObject[key] = [formDataObject[key], value];
-    //     }
-    //   } else {
-    //     formDataObject[key] = value;
-    //   }
-    // }
-    // console.log('Submitting:', formDataObject);
+    // Debug log the formData contents
+    const formDataObject = {};
+    for (let [key, value] of formDataToSend.entries()) {
+      if (formDataObject[key]) {
+        if (Array.isArray(formDataObject[key])) {
+          formDataObject[key].push(value);
+        } else {
+          formDataObject[key] = [formDataObject[key], value];
+        }
+      } else {
+        formDataObject[key] = value;
+      }
+    }
+    console.log('Submitting:', formDataObject);
 
+    // Dispatch to redux thunk
     dispatch(submitUserData(formDataToSend));
   };
 
@@ -188,11 +181,11 @@ const EditProfile = () => {
           <form className={styles.form} onSubmit={handleSubmit}>
             <textarea
               name="bio"
-              value={formData.bio}
               onChange={handleInputChange}
               maxLength='250'
               placeholder="Write something about yourself..."
               className={styles.textarea}
+              value={formData.bio}
             />
             <div className={styles.buttonGroup}>
               <button type="button" className={styles.cancelButton}>
@@ -211,9 +204,10 @@ const EditProfile = () => {
               <input
                 type="text"
                 name="job"
-                value={formData.job}
                 onChange={handleInputChange}
                 placeholder="Add your job"
+                pattern="[A-Za-z\s]+"
+                title="job can only contain letters and spaces"
                 className={styles.inputLeft}
               />
               <p className={styles.dataRight}>{formData.job}</p>
@@ -223,10 +217,12 @@ const EditProfile = () => {
               <input
                 type="text"
                 name="education"
-                value={formData.education}
                 onChange={handleInputChange}
                 placeholder="Add your education"
                 className={styles.inputLeft}
+                value={formData.education}
+                pattern="[A-Za-z\s]+"
+                title="Education can only contain letters and spaces"
               />
               <p className={styles.dataRight}>{formData.education}</p>
             </div>
@@ -235,7 +231,6 @@ const EditProfile = () => {
               <input
                 type="number"
                 name="height"
-                value={formData.height}
                 onChange={handleInputChange}
                 placeholder="Your height in cm"
                 className={styles.inputLeft}
@@ -246,7 +241,6 @@ const EditProfile = () => {
             <div className={styles.row}>
               <select
                 name="drinking"
-                value={formData.drinking}
                 onChange={handleInputChange}
                 className={styles.inputLeft}
               >
@@ -261,7 +255,6 @@ const EditProfile = () => {
             <div className={styles.row}>
               <select
                 name="smoking"
-                value={formData.smoking}
                 onChange={handleInputChange}
                 className={styles.inputLeft}
               >
@@ -276,7 +269,6 @@ const EditProfile = () => {
             <div className={styles.row}>
               <select
                 name="kids"
-                value={formData.kids}
                 onChange={handleInputChange}
                 className={styles.inputLeft}
               >
@@ -291,7 +283,6 @@ const EditProfile = () => {
             <div className={styles.row}>
               <select
                 name="politics"
-                value={formData.politics}
                 onChange={handleInputChange}
                 className={styles.inputLeft}
               >
@@ -308,10 +299,11 @@ const EditProfile = () => {
               <input
                 type="text"
                 name="religion"
-                value={formData.religion}
                 onChange={handleInputChange}
                 placeholder="Add your religion"
                 className={styles.inputLeft}
+                pattern="[A-Za-z\s]+"
+                title="religion can only contain letters and spaces"
               />
               <p className={styles.dataRight}>{formData.religion}</p>
             </div>
@@ -320,10 +312,11 @@ const EditProfile = () => {
               <input
                 type="text"
                 name="location"
-                value={formData.location}
                 onChange={handleInputChange}
                 placeholder="Add places you lived"
                 className={styles.inputLeft}
+                pattern="[A-Za-z\s]+"
+                title="location can only contain letters and spaces"
               />
               <p className={styles.dataRight}>{formData.location}</p>
             </div>

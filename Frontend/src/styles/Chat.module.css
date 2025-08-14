@@ -1,52 +1,41 @@
 .chatWrapper {
     width: 100%;
     height: 100%;
-    background-color: #fffbea;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    background-color: #fffbea;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
+/* ==== HEADER ==== */
 .chatHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px;
-    position: relative;
+    padding: 15px 20px;
+    background-color: #fffef5;
+    border-bottom: 2px solid #f8e88b;
 }
 
-.left {
-    position: relative;
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.menuButton {
-    background: transparent;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
+.userImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd24c;
 }
 
-.dropdown {
-    position: absolute;
-    top: 35px;
-    right: 2px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    z-index: 10;
-}
-
-.dropdown div {
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 14px;
+.username {
+    font-weight: bold;
+    font-size: 1.2rem;
     color: #333;
-}
-
-.dropdown div:hover {
-    background-color: #ffe58a;
 }
 
 .right {
@@ -55,46 +44,57 @@
     gap: 10px;
 }
 
-.userInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.left {
+    position: relative;
 }
 
-.username {
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: #333;
-}
-
-.userImage {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
+.menuButton,
 .closeButton {
     background: none;
     border: none;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
-    margin-left: 1.2rem;
     color: #444;
 }
 
+/* Dropdown menu */
+.dropdown {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    z-index: 20;
+}
+
+.dropdown div {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dropdown div:hover {
+    background-color: #ffe58a;
+}
+
+/* ==== CHAT BODY ==== */
 .chatBody {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     background-color: #fff;
 }
+
 .chatBody::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari and Opera */
 }
 
 .messageLeft {
@@ -102,34 +102,54 @@
     background-color: #ffe58a;
     padding: 10px 15px;
     border-radius: 18px 18px 18px 4px;
-    max-width: 75%;
+    max-width: 70%;
     color: #333;
     font-size: 14px;
 }
 
 .messageRight {
     align-self: flex-end;
-    background-color: #ffd700;
+    background-color: #ffd24c;
     padding: 10px 15px;
     border-radius: 18px 18px 4px 18px;
-    max-width: 75%;
+    max-width: 70%;
     color: #333;
     font-size: 14px;
 }
 
+.seen {
+    font-size: 12px;
+    margin-left: 5px;
+    color: #666;
+}
+
+.noConversation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* fill the chat body height */
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* ==== INPUT AREA ==== */
 .chatInputArea {
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    border-top: 1px solid #f0e68c;
+    border-top: 2px solid #f8e88b;
     background-color: #fffef5;
 }
 
 .chatInput {
     flex: 1;
     padding: 10px 14px;
-    border: 1px solid #ffcb46;
-    border-radius: 20px;
+    border: 1px solid #ffd24c;
+    border-radius: 25px;
     outline: none;
     font-size: 14px;
     background-color: #fff;
@@ -139,12 +159,12 @@
 .sendButton {
     margin-left: 10px;
     padding: 8px 14px;
-    background-color: #ffcb46;
+    background-color: #ffd24c;
     border: none;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 50%;
+    font-size: 18px;
     cursor: pointer;
-    color: white;
+    color: #fff;
     transition: background-color 0.2s ease;
 }
 

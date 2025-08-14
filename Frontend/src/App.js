@@ -18,6 +18,8 @@ import BumblePartnerSelector from './components/BumblePartnerSelector';
 import Chat from './components/Chat';
 import Onboarding from './pages/Onboarding';
 import OnboardingRoute from './utils/OnBoardingRoute';
+import { fetchSettings } from './store/reducers/SettingSlics';
+import Admin from './pages/Admin';
 
 const RedirectAuthenticatedUser = ({ children }) => {
   const { isAuthenticated, user } = useSelector(state => state.auth);
@@ -36,12 +38,14 @@ function App() {
 
   useEffect(() => {
     dispatch(checkAuth());
+    dispatch(fetchSettings());
     console.log('refreshing page on app.js')
   }, []);
 
   if (isCheckingAuth) {
     return <div>Loading app...</div>;
   }
+
   return (
     <div className="App scroll-container">
       <Routes>
@@ -58,6 +62,7 @@ function App() {
           <Route path='editProfile' element={<EditProfile />} /> 
           <Route path='chat' element={<Chat/>} />
         </Route>
+        <Route path='/admin' element={<Admin></Admin>}/>
       </Routes>
     </div>
   );

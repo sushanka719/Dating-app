@@ -3,23 +3,23 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
     {
         name: { type: String, required: true, trim: true },
-        nickName: { type: String},
+        nickName: { type: String },
         email: { type: String, required: true, unique: true, lowercase: true },
         password: { type: String, required: true, minlength: 6 },
-        age: { type: Number, min: 18 }, 
-        interestedIn: { type: String, enum: ["male", "female", "everyone"]},
-        lookingfor: { type: String, enum: ["date", "bff"]},
-        bio: { type: String, maxlength: 250 }, 
-        profilePics: [{ type: String }], 
+        age: { type: Number, min: 18 },
+        interestedIn: { type: String, enum: ["male", "female", "everyone"] },
+        lookingfor: { type: String, enum: ["date", "bff"] },
+        bio: { type: String, maxlength: 250 },
+        profilePics: [{ type: String }],
         location: {
             city: { type: String },
             country: { type: String },
-            coordinates: { type: { lat: Number, lng: Number } },
+            coordinates: { lat: { type: Number }, lng: { type: Number } }
         },
         interests: [{ type: String }],
-        matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
-        likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
-        dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
+        matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         blockedList: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         preferences: {
             minAge: { type: Number, default: 18 },
@@ -27,16 +27,16 @@ const userSchema = new mongoose.Schema(
             maxDistance: { type: Number, default: 50 },
         },
         isVerified: { type: Boolean, default: false },
-        isOnboarded: { type: Boolean, default: false }, 
-        lastActive: { type: Date, default: Date.now }, 
+        isOnboarded: { type: Boolean, default: false },
+        lastActive: { type: Date, default: Date.now },
         verificationToken: String,
         verificationTokenExpiresAt: Date,
         snoozeMode: { type: Boolean, default: false },
 
         //Users dating app details
         gender: { type: String, enum: ["male", "female", "non-binary", "other"] },
-        job: { type: String }, 
-        education: { type: String }, 
+        job: { type: String },
+        education: { type: String },
         height: { type: Number },
         drinking: { type: String, enum: ["yes", "no", "occasionally"] },
         smoking: { type: String, enum: ["yes", "no", "occasionally"] },
@@ -44,6 +44,7 @@ const userSchema = new mongoose.Schema(
         politics: { type: String, enum: ["liberal", "conservative", "moderate", "apolitical"] },
         religion: { type: String },
         currentlyLiving: { type: String },
+        isAdmin: { type: Boolean, default: false },
     },
     { timestamps: true } // Adds createdAt and updatedAt fields automatically
 );

@@ -125,7 +125,7 @@ const Settings = () => {
                 {['Female', 'Male', 'Everyone'].map((option) => (
                   <button
                     key={option}
-                    className={`${styles.pillButton} ${interestedIn.toLowerCase() === option.toLowerCase()
+                    className={`${styles.pillButton} ${interestedIn === option.toLowerCase()
                         ? styles.pillButtonActive
                         : ''
                       }`}

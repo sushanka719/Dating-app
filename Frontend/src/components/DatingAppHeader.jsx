@@ -8,28 +8,43 @@ import {
     updateSettings,
     fetchSettings,
 } from '../store/reducers/SettingSlics';
+import { fetchUsers, resetFeed } from '../store/reducers/userFeedSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const DatingAppHeader = () => {
     const dispatch = useDispatch();
     const [showFilter, setShowFilter] = useState(false);
 
-    const { interestedIn, ageRange} = useSelector(
-        (state) => state.settings
-      );
+    const { interestedIn, ageRange } = useSelector((state) => state.settings);
 
     useEffect(() => {
-        dispatch(fetchSettings()); 
+        dispatch(fetchSettings());
     }, [dispatch]);
 
     const handleApply = () => {
-        dispatch(updateSettings({
-            interestedIn,
-            preferences: {
-                minAge: 18,
-                maxAge: ageRange[1]
-            }
-          }));
+        // Update settings on the server
+        dispatch(
+            updateSettings({
+                interestedIn,
+                preferences: {
+                    minAge: ageRange[0],
+                    maxAge: ageRange[1],
+                },
+            })
+        );
+        // Reset user feed and fetch new users with updated filters
+        dispatch(resetFeed());
+        dispatch(
+            fetchUsers({
+                page: 1, // Start from page 1 for new filters
+                limit: 4,
+                filters: {
+                    interestedIn,
+                    minAge: ageRange[0],
+                    maxAge: ageRange[1],
+                },
+            })
+        );
         setShowFilter(false);
     };
 
@@ -46,7 +61,9 @@ const DatingAppHeader = () => {
 
             <div className={styles.logo}>
                 <img src={kiss} alt="logo icon" />
-                <p>mingle<span>Me</span></p>
+                <p>
+                    mingle<span>Me</span>
+                </p>
             </div>
 
             {showFilter && (
@@ -57,29 +74,38 @@ const DatingAppHeader = () => {
                             {['Male', 'Female', 'Everyone'].map((option) => (
                                 <button
                                     key={option}
-                                    className={`${styles.optionBtn} ${interestedIn.toLowerCase() === option.toLowerCase() ? styles.active : ''}`}
-                                    onClick={() => dispatch(setInterestedIn(option))}
+                                    className={`${styles.optionBtn} ${interestedIn.toLowerCase() === option.toLowerCase() ? styles.active : ''
+                                        }`}
+                                    onClick={() => dispatch(setInterestedIn(option.toLowerCase()))}
                                 >
                                     {option}
                                 </button>
                             ))}
                         </div>
 
-                        <h4>Age</h4>
+                        <h4>Age Range</h4>
                         <div className={styles.ageSlider}>
-                            <p>Between 18 and {ageRange[1]}</p>
+                            <p>
+                                Between {ageRange[0]} and {ageRange[1]}
+                            </p>
                             <input
                                 type="range"
                                 min="18"
                                 max="60"
                                 value={ageRange[1]}
-                                onChange={(e) => dispatch(setAgeRange([ageRange[0], +e.target.value]))}
+                                onChange={(e) =>
+                                    dispatch(setAgeRange([ageRange[0], +e.target.value]))
+                                }
                             />
                         </div>
 
                         <div className={styles.actions}>
-                            <button onClick={handleCancel} className={styles.cancel}>Cancel</button>
-                            <button onClick={handleApply} className={styles.apply}>Apply</button>
+                            <button onClick={handleCancel} className={styles.cancel}>
+                                Cancel
+                            </button>
+                            <button onClick={handleApply} className={styles.apply}>
+                                Apply
+                            </button>
                         </div>
                     </div>
                 </div>

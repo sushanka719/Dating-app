@@ -27,9 +27,8 @@ export const fetchSettings = createAsyncThunk(
     'setthing/fetch',
     async (_, {rejectWithValue}) => {
         try {
-            console.log('fetching settings')
             const response = await axios.get('http://localhost:5000/api/profile', {withCredentials: true})
-            console.log(response.data.user, "from settings fetch form porfile")
+            // console.log(response.data.user, "from settings fetch form porfile")
             return response.data.user;
         } catch (error) {
             return rejectWithValue(
@@ -46,6 +45,8 @@ const initialState = {
     connectionType: 'date',
     loading: false,
     error: null,
+    userId: '',
+    user : []
 };
 
 const settingSlice = createSlice({
@@ -89,6 +90,8 @@ const settingSlice = createSlice({
             })
             .addCase(fetchSettings.fulfilled, (state, action) => {
                 const user = action.payload;
+                state.userId = user._id;
+                state.user = user
 
                 state.snoozeMode = user.snoozeMode;
                 state.interestedIn = user.interestedIn;

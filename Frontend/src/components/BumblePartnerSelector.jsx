@@ -1,54 +1,201 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/BumblePartnerSelector.module.css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import DatingAppHeader from './DatingAppHeader';
 
+
 const BumblePartnerSelector = () => {
-    const [currentUserIndex] = useState(0);
+    const [users, setUsers] = useState([]);
+    const [currentUserIndex, setCurrentUserIndex] = useState(0);
+    const [page, setPage] = useState(2);
+    const [loading, setLoading] = useState(true);
+    const [fetchingMore, setFetchingMore] = useState(false); // New state for fetching next page
+    const [error, setError] = useState(null);
     const cardRef = useRef(null);
 
-    const [users] = useState([
-        {
-            id: 1,
-            name: 'Celine',
-            age: 22,
-            location: '2km away, Bhaktapur',
-            height: '170 cm',
-            zodiac: 'Socially',
-            smoking: 'Never',
-            gender: 'Woman',
-            lookingFor: 'Something casual',
-            children: 'Don\'t want',
-            bio: 'Adventure seeker and coffee lover. Passionate about sustainable living!',
-            images: ['https://i.pinimg.com/736x/17/98/c4/1798c43830aec0a130d1de2d843a5f98.jpg']
-        }
-    ]);
+    const [showMatchModal, setShowMatchModal] = useState(false);
+    const [matchedUser, setMatchedUser] = useState(null);
+
+    // Fetch users from API
+    useEffect(() => {
+        const fetchUsers = async () => {
+            // Only show main loading on initial load
+            if (users.length === 0) {
+                setLoading(true);
+            } else {
+                setFetchingMore(true); // Show fetching state for subsequent pages
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/users?page=${page}&limit=4`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch users');
+                }
+
+                const data = await response.json();
+                // console.log(data, 'lets see dta im')
+                const mappedUsers = data.users.map(user => ({
+                    id: user._id || Math.random().toString(36).substr(2, 9),
+                    name: user.name,
+                    age: user.age,
+                    location: `${user.location.city}, ${user.location.country}`,
+                    height: `${user.height} cm`,
+                    zodiac: user.politics || 'Not specified',
+                    smoking: user.smoking === 'yes' ? 'Occasionally' : 'Never',
+                    gender: user.gender.charAt(0).toUpperCase() + user.gender.slice(1),
+                    lookingFor: user.interestedIn === 'everyone' ? 'Something casual' : `Interested in ${user.interestedIn}`,
+                    children: user.kids === 'no' ? "Don't want" : user.kids === 'yes' ? 'Want' : 'Maybe',
+                    bio: user.bio,
+                    images: user.profilePics.length > 0 ? user.profilePics : ['https://via.placeholder.com/512'],
+                    interests: user.interests
+                }));
+
+                // Replace users array instead of appending to avoid duplicates
+                setUsers(mappedUsers);
+                setCurrentUserIndex(0); // Reset to first user of new batch
+
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+                setFetchingMore(false);
+            }
+        };
+
+        fetchUsers();
+    }, [page]);
 
     const currentUser = users[currentUserIndex];
 
-    const handleDislike = () => {
-        console.log('Disliked');
-        // Add your dislike logic here
+    const sendReaction = async (action) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/userReaction', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    targetUserId: currentUser.id,
+                    action: action
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to send ${action} reaction`);
+            }
+
+            console.log(`${action} sent successfully for ${currentUser.name}`);
+        } catch (err) {
+            console.error(`Error sending ${action}:`, err.message);
+            setError(err.message);
+        }
     };
 
-    const handleSuperLike = () => {
-        console.log('Super Liked');
-        // Add your super like logic here
+    const handleDislike = async () => {
+        await sendReaction('dislike');
+        moveToNextUser();
     };
 
-
-    const handleLike = () => {
-        console.log('Liked');
-        // Add your like logic here
+    const handleSuperLike = async () => {
+        console.log("super like not implemented yet")
     };
+
+    const handleLike = async () => {
+        await sendReaction('like');
+        moveToNextUser();
+    };
+
+    const moveToNextUser = () => {
+        // Check if we're at the last user in current batch
+        if (currentUserIndex + 1 >= users.length) {
+            // Fetch next page - this will trigger useEffect
+            setPage(prevPage => prevPage + 1);
+            // Don't update currentUserIndex here - let useEffect handle it
+        } else {
+            // Move to next user in current batch
+            setCurrentUserIndex(prevIndex => prevIndex + 1);
+        }
+    };
+
+    // Show main loading screen on initial load
+    if (loading && users.length === 0) {
+        return (
+            <div className={styles.loadingContainer}>
+                <div className={styles.loadingSpinner}></div>
+                <p>Finding amazing people for you...</p>
+            </div>
+        );
+    }
+
+    // Show error if no users and there's an error
+    if (error && users.length === 0) {
+        return (
+            <div className={styles.errorContainer}>
+                <p>Error loading users: {error}</p>
+                <button onClick={() => window.location.reload()}>Try Again</button>
+            </div>
+        );
+    }
+
+    // Show "no more users" if we've exhausted all users
+    if (!currentUser && users.length === 0) {
+        return (
+            <div className={styles.noUsersContainer}>
+                <p>No more users available</p>
+                <button onClick={() => window.location.reload()}>Refresh</button>
+            </div>
+        );
+    }
+
+    // Show fetching overlay when loading next batch
+    if (fetchingMore || !currentUser) {
+        return (
+            <>
+                <DatingAppHeader />
+                <div className={styles.bumbleContainer}>
+                    <div className={styles.fetchingOverlay}>
+                        <div className={styles.loadingSpinner}></div>
+                        <p>Loading more profiles...</p>
+                    </div>
+                </div>
+            </>
+        );
+    }
 
     return (
-       <>
+        <>
             <DatingAppHeader />
+
+            {showMatchModal && matchedUser && (
+                <div className={styles.matchModal}>
+                    <div className={styles.modalContent}>
+                        <h2>🎉 It's a Match!</h2>
+                        <p>You and <strong>{matchedUser.name}</strong> liked each other!</p>
+                        <button
+                            className={styles.closeModalButton}
+                            onClick={() => {
+                                setShowMatchModal(false);
+                                setMatchedUser(null);
+                                moveToNextUser(); // continue swiping
+                            }}
+                        >
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className={styles.bumbleContainer}>
                 <div className={styles.card} ref={cardRef}>
-
                     <Splide options={{
                         perPage: 1,
                         perMove: 1,
@@ -140,7 +287,7 @@ const BumblePartnerSelector = () => {
                     </button>
                 </div>
             </div>
-       </>
+        </>
     );
 };
 

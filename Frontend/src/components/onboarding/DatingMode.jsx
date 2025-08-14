@@ -19,11 +19,11 @@ const DatingMode = ({ formData, setFormData, nextStep, handleSubmit }) => {
 
       <div className={styles.modeOptions}>
         <div
-          className={`${styles.modeOption} ${selectedMode === 'Date' ? styles.selected : ''}`}
-          onClick={() => handleSelect('Date')}
+          className={`${styles.modeOption} ${selectedMode === 'date' ? styles.selected : ''}`}
+          onClick={() => handleSelect('date')}
         >
           <div className={styles.tickCircle}>
-            {selectedMode === 'Date' && <span>&#10003;</span>}
+            {selectedMode === 'date' && <span>&#10003;</span>}
           </div>
           <div>
             <h3 className={styles.optionTitle}>Date</h3>
@@ -32,11 +32,11 @@ const DatingMode = ({ formData, setFormData, nextStep, handleSubmit }) => {
         </div>
 
         <div
-          className={`${styles.modeOption} ${selectedMode === 'BFF' ? styles.selected : ''}`}
-          onClick={() => handleSelect('BFF')}
+          className={`${styles.modeOption} ${selectedMode === 'bff' ? styles.selected : ''}`}
+          onClick={() => handleSelect('bff')}
         >
           <div className={styles.tickCircle}>
-            {selectedMode === 'BFF' && <span>&#10003;</span>}
+            {selectedMode === 'bff' && <span>&#10003;</span>}
           </div>
           <div>
             <h3 className={styles.optionTitle}>BFF</h3>

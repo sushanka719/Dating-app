@@ -12,7 +12,6 @@ router.post('/basicUserInfo', verifyToken, upload.array('profilePics', 6),
     updateBasicProfileAndLocation);
 router.patch("/update-profile", upload.array("profilePics", 6), verifyToken, updateProfile);
 router.get('/profile', verifyToken, getUserProfile);
-// routes/userRoutes.js
 router.patch('/settings', verifyToken, updateUserSettings);
 
 
